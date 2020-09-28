@@ -3,7 +3,7 @@
 '引数２：出力ファイルファイルパス
 '引数３：置換前文字列
 '引数４：置換後文字列
-Private Sub CNV_FILE(ByVal si As String, ByVal so As String, hi1 As String, ho1 As String)
+Public Sub CNV_FILE(ByVal si As String, ByVal so As String, hi1 As String, ho1 As String)
     
     Dim ni
     Dim no
