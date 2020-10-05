@@ -1,39 +1,39 @@
-'入力ファイルから出力ファイルへ文字列を置換して出力
+入力ファイルから出力ファイルへ文字列を置換して出力する関数
 '引数１：入力ファイルパス
-'引数２：出力ファイルファイルパス
+'引数２：出力ファイルパス
 '引数３：置換前文字列
 '引数４：置換後文字列
-Public Sub CNV_FILE(ByVal si As String, ByVal so As String, hi1 As String, ho1 As String)
+Private Sub CNV_TXTFILE(ByVal path_i  As String, ByVal path_o As String, search_str As String, replace_str As String)
     
-    Dim ni
-    Dim no
-    Dim v
+    Dim ni as integer
+    Dim no as integer
+    Dim v  as string
 
-    '// ファイル番号取得
+    '// ファイル番号取得（入力ファイル）
     ni = FreeFile
     
-    '// シーケンシャル入力モードでファイルを開く
-    Open si For Input As #ni
+    '// ファイルを開く（入力モード）
+    Open path_i  For Input As #ni
     
-    '// ファイル番号取得
+    '// ファイル番号取得（出力ファイル）
     no = FreeFile
 
-    '// シーケンシャル出力モードでファイルを開く
-    Open so For Output As #no
+    '// ファイルを開く（出力モード）
+    Open path_o For Output As #no
 
-    '// 入力ファイルのEOFまでループ
+    '// 入力ファイルの終端までループ
     Do Until EOF(ni)
-        '// 入力ファイルの行を読み込み
+        '// 入力ファイルの読み込み（１行）
         Line Input #ni, v
-        '文字列を置換
-        v = Replace(v, hi1, ho1)
-        '// 出力ファイルのデータを書き込み
+        '// 読み込んだ文字列を置換
+        v = Replace(v, search_str, replace_str)
+        '// 出力ファイルを書き込み（１行：置換済）
         Print #no, v
     Loop
     
-    '// ファイルを閉じる
+    '// ファイルを閉じる（入力ファイル）
     Close #ni
-    '// ファイルを閉じる
+    '// ファイルを閉じる（出力ファイル）
     Close #no
 
 End Sub
